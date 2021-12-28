@@ -1,1 +1,3 @@
 venv
+oauth_credentials.json
+oauth_database.db
