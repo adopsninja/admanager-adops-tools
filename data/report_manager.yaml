@@ -1,0 +1,18 @@
+report:
+  placement:
+    reportType: "test"
+    email: "ninja.adops@gmail.com"
+    networkCode: "21940647202"
+    statement: "WHERE PARENT_AD_UNIT_NAME LIKE ''"
+    dimensions:
+      - "DATE"
+      - "AD_UNIT_NAME"
+    columns:
+      - "TOTAL_CODE_SERVED_COUNT"
+      - "TOTAL_INVENTORY_LEVEL_UNFILLED_IMPRESSIONS"
+      - "TOTAL_LINE_ITEM_LEVEL_IMPRESSIONS"
+      - "TOTAL_LINE_ITEM_LEVEL_CLICKS"
+      - "TOTAL_LINE_ITEM_LEVEL_ALL_REVENUE"
+      - "TOTAL_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS"
+      - "TOTAL_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS"
+    timeZoneType: "PUBLISHER"
