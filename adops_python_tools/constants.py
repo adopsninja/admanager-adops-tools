@@ -21,3 +21,6 @@ DEFAULT_CLIENT_SECRET = os.environ["DEFAULT_CLIENT_SECRET"]
 _REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 
 API_VERSION = "v202105"
+
+PLACEMENT_MANAGER_PATH = "/data/placement_manager.yaml"
+REPORT_MANAGER_PATH = "/data/report_manager.yaml"
