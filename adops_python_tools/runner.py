@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import logging
 
-import authentication.database as database
+from database import Database
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 logging.getLogger("googleapiclient.discovery_cache").setLevel(logging.ERROR)
@@ -17,7 +17,7 @@ def main():
         [print(f"{key}: {value}") for key, value in options.items()]
         choice = input("Pick a number: ")
         if choice == "1":
-            database.Database().database_CLI()
+            Database().database_CLI()
         else:
             break
 
