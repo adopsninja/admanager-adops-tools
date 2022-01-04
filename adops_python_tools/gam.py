@@ -74,7 +74,7 @@ class PlacementManager:
         ]
         return list(set(dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"]))
 
-    def update_placement(self, client, placement_id: str, ad_unit_list: list) -> str:
+    def update_placement(self, client: AdOpsAdManagerClient, placement_id: str, ad_unit_list: list) -> str:
         statement = (
             StatementBuilder(version=client._API_VERSION)
             .Where("id = :id")
@@ -115,7 +115,7 @@ class ReportManager:
         }
         return query
 
-    def get_report(self, client, report_type="placementPerformance") -> str:
+    def get_report(self, client: AdOpsAdManagerClient, report_type="placementPerformance") -> str:
         output_path = PurePath(
             self.config["outputFolderPath"], datetime.datetime.now().strftime("%d%m%Y_%H%M")
         )
