@@ -1,19 +1,15 @@
-report:
-  outputFolderPath: "/home/adopsninja/code/adops-python-tools/data"
-  placement:
-    reportType: "performance"
-    # email: "ninja.adops@gmail.com"
-    # networkCode: "21940647202"
-    email: "dariusz.siudak***REMOVED***"
-    networkCode: "***REMOVED***"
-    statement: ""
-    dimensions:
-      - "AD_EXCHANGE_URL"
-      - "AD_EXCHANGE_DFP_AD_UNIT"
-      - "AD_EXCHANGE_DFP_AD_UNIT_ID"
-    columns:
-      - "AD_EXCHANGE_AD_REQUESTS"
-      - "AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
-      - "AD_EXCHANGE_AD_REQUEST_CTR"
-      - "AD_EXCHANGE_AD_REQUEST_ECPM"
-    timeZoneType: "AD_EXCHANGE"
+outputFolderPath: "/home/adopsninja/code/adops-python-tools/data"
+placementPerformance:
+  statement: ""
+  dimensions:
+    - "AD_EXCHANGE_URL"
+    - "AD_EXCHANGE_DFP_AD_UNIT"
+    - "AD_EXCHANGE_DFP_AD_UNIT_ID"
+  columns:
+    - "AD_EXCHANGE_AD_REQUESTS"
+    - "AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    - "AD_EXCHANGE_AD_REQUEST_CTR"
+    - "AD_EXCHANGE_AD_REQUEST_ECPM"
+  adUnitView: "FLAT"
+  dateRangeType: "CUSTOM_DATE"
+  timeZoneType: "AD_EXCHANGE"
