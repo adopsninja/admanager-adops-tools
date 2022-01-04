@@ -1,0 +1,89 @@
+# Company Y
+Company Y:
+  networkCode: ***REMOVED***
+  email: "dariusz.siudak***REMOVED***"
+  placements:
+  - name: "API_highviewability_40%+_YB"
+    id: 1234567891144
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 40
+    maxn: 50
+    minAdRequests: 10000
+  - name: "API_highviewability_50%+_YB"
+    id: 1234567895418
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 50
+    maxn: 60
+    minAdRequests: 10000
+
+# Company E
+Company E:
+  networkCode: ***REMOVED***
+  email: "dariusz.siudak***REMOVED***"
+  placements:
+  - name: "Pakiet Standard 2022"
+    id: 1234567894387
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 45
+    maxn: 65
+    minAdRequests: 10000
+  - name: "Pakiet Premium 2022"
+    id: 1234567898737
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 65
+    maxn: 85
+    minAdRequests: 10000
+  - name: "Pakiet Premium+ 2022"
+    id: 1234567893928
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 85
+    maxn: 100
+    minAdRequests: 10000
+
+# Company I
+Company I:
+  networkCode: 17796319
+  email: "dariusz.siudak***REMOVED***"
+  placements:
+  - name: "Pakiet Standard 2022"
+    id: 1234567898755
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 45
+    maxn: 65
+    minAdRequests: 10000
+  - name: "Pakiet Premium 2022"
+    id: 1234567893934
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 65
+    maxn: 85
+    minAdRequests: 10000
+  - name: "Pakiet Premium+ 2022"
+    id: 1234567893937
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 85
+    maxn: 100
+    minAdRequests: 10000
+
+# Company p
+Company p:
+  networkCode: 134579212
+  email: "dariusz.siudak***REMOVED***"
+  placements:
+  - name: "Pakiet Standard 2022"
+    id: 1234567894402
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 45
+    maxn: 65
+    minAdRequests: 150000
+  - name: "Pakiet Premium 2022"
+    id: 1234567894405
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 65
+    maxn: 85
+    minAdRequests: 50000
+  - name: "Pakiet Premium+ 2022"
+    id: 1234567893940
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 85
+    maxn: 100
+    minAdRequests: 50000
