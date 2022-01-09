@@ -29,7 +29,7 @@ class PlacementManager:
         ]
         return list(set(dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"]))
 
-    def pql_placement_statement(self, client: AdOpsAdManagerClient, placement_id: str) -> dict:
+    def get_placement_by_id(self, client: AdOpsAdManagerClient, placement_id: str) -> dict:
         statement = (
             StatementBuilder(version=client._API_VERSION)
             .Where("id = :id")
@@ -40,7 +40,7 @@ class PlacementManager:
         return statement.ToStatement()
 
     def update_placement(self, client: AdOpsAdManagerClient, placement_id: str, ad_unit_list: list) -> str:
-        response = client.placement_service.getPlacementsByStatement(self.pql_placement_statement(client, placement_id))
+        response = client.placement_service.getPlacementsByStatement(self.get_placement_by_id(client, placement_id))
         if "results" in response and len(response["results"]):
             placement = response["results"][0]
             placement["targetedAdUnitIds"] = ad_unit_list
