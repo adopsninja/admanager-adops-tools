@@ -30,9 +30,12 @@ class AdOpsTools:
 
     def update_performance_placements(self, publisher="Company Y") -> None:
         placement_config = self.placement_manager.config
-        ad_manager_client = self.set_admanager_client(placement_config[publisher]["email"], placement_config[publisher]["networkCode"])
+        ad_manager_client = self.set_admanager_client(
+            placement_config[publisher]["email"], 
+            placement_config[publisher]["networkCode"]
+        )
         report_path = self.report_manager.get_report(ad_manager_client, "placementPerformance")
-        dataframe = self.placement_manager.cleanup_report(report_path)
+        dataframe = self.placement_manager.clean_up_report(report_path)
 
         for placement in placement_config[publisher]["placements"]:
             ad_units = self.placement_manager.filter_ad_units(dataframe, placement)
@@ -56,9 +59,9 @@ class AdOpsAdManagerClient:
 
 class PlacementManager:
     def __init__(self, config_path) -> None:
-        self.config = ConfigReader(config_path).read_config()
+        self.config = ConfigReader(config_path).read_yaml_config()
 
-    def cleanup_report(self, report: str) -> pd.DataFrame:
+    def clean_up_report(self, report: str) -> pd.DataFrame:
         dataframe = pd.read_csv(report, compression="gzip")
         dataframe["Column.AD_EXCHANGE_AD_REQUEST_ECPM"] /= 1000000
         dataframe["Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"] *= 100
@@ -74,7 +77,7 @@ class PlacementManager:
         ]
         return list(set(dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"]))
 
-    def update_placement(self, client: AdOpsAdManagerClient, placement_id: str, ad_unit_list: list) -> str:
+    def pql_placement_statement(self, client: AdOpsAdManagerClient, placement_id: str) -> dict:
         statement = (
             StatementBuilder(version=client._API_VERSION)
             .Where("id = :id")
@@ -82,7 +85,10 @@ class PlacementManager:
             .Limit(1)
             .WithBindVariable("id", placement_id)
         )
-        response = client.placement_service.getPlacementsByStatement(statement.ToStatement())
+        return statement.ToStatement()
+
+    def update_placement(self, client: AdOpsAdManagerClient, placement_id: str, ad_unit_list: list) -> str:
+        response = client.placement_service.getPlacementsByStatement(self.pql_placement_statement(client, placement_id))
         if "results" in response and len(response["results"]):
             placement = response["results"][0]
             placement["targetedAdUnitIds"] = ad_unit_list
@@ -100,9 +106,9 @@ class PlacementManager:
 
 class ReportManager:
     def __init__(self, config_path) -> None:
-        self.config = ConfigReader(config_path).read_config()
+        self.config = ConfigReader(config_path).read_yaml_config()
 
-    def set_report_job(self, report_type="placementPerformance") -> dict:
+    def set_report_job(self, report_type: str="placementPerformance") -> dict:
         if self.config[report_type]["dateRangeType"] == "CUSTOM_DATE":
             default_date_range = {
                 "startDate": datetime.date.today() - datetime.timedelta(30),
@@ -115,7 +121,7 @@ class ReportManager:
         }
         return query
 
-    def get_report(self, client: AdOpsAdManagerClient, report_type="placementPerformance") -> str:
+    def get_report(self, client: AdOpsAdManagerClient, report_type: str="placementPerformance") -> str:
         output_path = PurePath(
             self.config["outputFolderPath"], datetime.datetime.now().strftime("%d%m%Y_%H%M")
         )
@@ -151,24 +157,22 @@ class ReportManager:
             os.makedirs(directory)
             return directory
 
-    def __str__(self) -> str:
-        return f"\nConfiguration: {self.config}\n\nCurrent network: {self.client.network_service.getCurrentNetwork()}"
-
 
 class ConfigReader:
     def __init__(self, path_to_configuration_file) -> None:
         self.path_to_configuration_file = path_to_configuration_file
 
-    def read_config(self) -> dict:
+    def read_yaml_config(self) -> dict:
         with open(PurePath(self.path_to_configuration_file), "r") as config_file:
             config = yaml.safe_load(config_file)
         return config
 
 
 def main():
-    AdOpsTools().update_performance_placements("Company E")
-    AdOpsTools().update_performance_placements("Company I")
-    AdOpsTools().update_performance_placements("Company p")
+    AdOpsTools().update_performance_placements("Company Y")
+    # AdOpsTools().update_performance_placements("Company E")
+    # AdOpsTools().update_performance_placements("Company I")
+    # AdOpsTools().update_performance_placements("Company p")
 
 if __name__ == "__main__":
     main()
