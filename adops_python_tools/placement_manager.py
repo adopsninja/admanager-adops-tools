@@ -11,22 +11,64 @@ logger = logging.getLogger(__name__)
 
 class PlacementManager:
     def __init__(self, config_path) -> None:
-        self.config = ConfigReader(config_path).read_yaml_config()
+        self.config_reader = ConfigReader(config_path)
+        self.config = self.config_reader.read_yaml_config()
 
     def clean_up_report(self, report: str) -> pd.DataFrame:
         dataframe = pd.read_csv(report, compression="gzip")
         dataframe["Column.AD_EXCHANGE_AD_REQUEST_ECPM"] /= 1000000
         dataframe["Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"] *= 100
         dataframe["Column.AD_EXCHANGE_AD_REQUEST_CTR"] *= 100
+        dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"] = dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"].astype(str)
 
         return dataframe
 
-    def filter_ad_units(self, dataframe: pd.DataFrame, config: dict) -> list:
+    def filter_by_label_sign(self, dataframe: pd.DataFrame, pattern: str, is_positive: bool=True) -> pd.DataFrame:
+        ad_unit_label = dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"].str.contains(pattern, case=False)
+        url_label = dataframe["Dimension.AD_EXCHANGE_URL"].str.contains(pattern, case=False)
+        if is_positive:
+            dataframe = dataframe.loc[(ad_unit_label) | (url_label)]
+        else:
+            dataframe = dataframe.loc[~((ad_unit_label) | (url_label))]
+        return dataframe
+
+    def filter_by_performance(self, dataframe: pd.DataFrame, config: dict) -> pd.DataFrame:
         dataframe = dataframe.loc[
             (dataframe[config["column"]] >= config["minn"])
             & (dataframe[config["column"]] <= config["maxn"])
             & (dataframe["Column.AD_EXCHANGE_AD_REQUESTS"] > config["minAdRequests"])
         ]
+        return dataframe
+
+    def filter_pattern(self, items: list) -> str:
+        return "|".join(list(
+            set(
+                [item.split(".")[0].strip().lower() for item in items]
+            )
+        ))
+
+    def filter_by_list_type(self, dataframe: pd.DataFrame, config: dict) -> pd.DataFrame:
+        if "whitelist" in config:
+            items = self.config_reader.read_txt_config(config["whitelist"])
+            dataframe = self.filter_by_label_sign(dataframe, self.filter_pattern(items), True)
+            logger.info("Number of ad units after placement whitelist check: %s", len(dataframe))
+        if  "blacklist" in config:
+            items = self.config_reader.read_txt_config(config["blacklist"])
+            dataframe = self.filter_by_label_sign(dataframe, self.filter_pattern(items), False)
+            logger.info("Number of ad units after placement blacklist check: %s", len(dataframe))
+        return dataframe
+
+    def filter_by_general_blacklist(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+        blacklisted_ad_units = self.config_reader.read_txt_config(self.config["generalBlacklist"])
+        dataframe = self.filter_by_label_sign(dataframe, self.filter_pattern(blacklisted_ad_units), False)
+        logger.info("Number of ad units after general blacklist check: %s", len(dataframe))
+        return dataframe
+
+    def filter_ad_units(self, dataframe: pd.DataFrame, config: dict) -> list:
+        dataframe = self.filter_by_performance(dataframe, config)
+        dataframe = self.filter_by_list_type(dataframe, config)
+        dataframe = self.filter_by_general_blacklist(dataframe)
+        logger.info("Number of ad units after filtering: %s", len(dataframe))
         return list(set(dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"]))
 
     def get_placement_by_id(self, client: AdOpsAdManagerClient, placement_id: str) -> dict:
@@ -37,6 +79,7 @@ class PlacementManager:
             .Limit(1)
             .WithBindVariable("id", placement_id)
         )
+        logger.debug("Statement to retrieve placement: %s", statement.ToStatement())
         return statement.ToStatement()
 
     def update_placement(self, client: AdOpsAdManagerClient, placement_id: str, ad_unit_list: list) -> str:
@@ -50,7 +93,7 @@ class PlacementManager:
                     logger.info(f"Placement with id: 123456789zz{placement['id']} and name {placement['name']} was updated.")
             except errors.GoogleAdsServerFault as e:
                 logger.error(
-                    f"Placement {placement['name']} couldn't be updated because of {e.errors[0]['reason']}."
+                    f"Placement {placement['name']} couldn't be updated because of {e.errors[0]['errorString']}."
                 )
 
         return placement_id
