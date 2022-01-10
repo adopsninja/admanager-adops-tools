@@ -4,7 +4,8 @@ import sqlite3
 from collections import namedtuple
 from sqlite3 import OperationalError
 
-from constants import DEFAULT_APP_NAME, DEFAULT_CLIENT_ID, DEFAULT_CLIENT_SECRET, DEFAULT_DB_PATH
+from constants import (DEFAULT_APP_NAME, DEFAULT_CLIENT_ID,
+                       DEFAULT_CLIENT_SECRET, DEFAULT_DB_PATH)
 from refresh_token import generate_refresh_token
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
@@ -92,11 +93,7 @@ class Database:
                 logger.info(f"User {user_cred.get('email')} credentials updated.")
 
     def get_credentials(self, user_email=None):
-        """Search for database specified by input number.
-        
-        Returns:
-            tuple -- credentials nescessary to login into Google Admanager
-        """
+        """Returns namedtuple of oauth user credentials from database."""
         users = self.get_users()
         if not user_email:
             user = self.db_cursor.execute(
@@ -111,11 +108,7 @@ class Database:
         return self.Credentials(*user)
 
     def remove_user_credentials(self):
-        """Remove user based on user choice. All users with picked email will be removed.
-
-        Returns:
-            str: removed email.
-        """
+        """Removes user from credentials table based on user choice."""
         users = self.get_users()
         user_to_remove = int(input("Pick number: "))
         with self.db_connection:
@@ -126,11 +119,7 @@ class Database:
         return users.get(user_to_remove)
 
     def get_users(self):
-        """Gets all available users from database.
-
-        Returns:
-            dict: available users.
-        """
+        """Gets all available users from credentials table."""
         users = self.db_cursor.execute("SELECT * FROM credentials").fetchall()
         print("\n::: Available users :::")
         available_users = {}
