@@ -11,3 +11,7 @@ class ConfigReader:
         with open(PurePath(self.path_to_configuration_file), "r") as config_file:
             config = yaml.safe_load(config_file)
         return config
+
+    def read_txt_config(self, path_to_file) -> list:
+        with open(PurePath(path_to_file), "r") as config_file:
+            return config_file.readlines()
