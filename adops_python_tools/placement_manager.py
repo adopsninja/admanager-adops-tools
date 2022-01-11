@@ -6,11 +6,14 @@ from googleads.ad_manager import StatementBuilder
 
 from adops_ad_manager import AdOpsAdManagerClient
 from config_reader import ConfigReader
+from constants import REPORT_MANAGER_PATH
+from report_manager import ReportManager
 
 logger = logging.getLogger(__name__)
 
 class PlacementManager:
     def __init__(self, config_path) -> None:
+        self.report_manager = ReportManager(REPORT_MANAGER_PATH)
         self.config_reader = ConfigReader(config_path)
         self.config = self.config_reader.read_yaml_config()
 
@@ -97,3 +100,15 @@ class PlacementManager:
                 )
 
         return placement_id
+
+    def update_performance_placements(self, publisher="Company Y") -> None:
+        ad_manager_client = AdOpsAdManagerClient(
+            self.config[publisher]["email"],
+            self.config[publisher]["networkCode"]
+            )
+        report_path = self.report_manager.get_report(ad_manager_client, "placementPerformance")
+        dataframe = self.clean_up_report(report_path)
+
+        for placement in self.config[publisher]["placements"]:
+            ad_units = self.filter_ad_units(dataframe, placement)
+            self.update_placement(ad_manager_client, placement["id"], ad_units)
