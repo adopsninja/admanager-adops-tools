@@ -391,49 +391,49 @@ Company p:
     id: 1234567898527
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
     minn: 45 
-    maxn: 5 
+    maxn: 55 
     minAdRequests: 100000
   - name: "pp_viewability_50"
     id: 1234567890046
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
     minn: 55 
-    maxn: 5 
+    maxn: 65 
     minAdRequests: 100000
   - name: "pp_viewability_60"
     id: 1234567890052
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
     minn: 67 
-    maxn: 5 
+    maxn: 75 
     minAdRequests: 200000
   - name: "pp_viewability_70"
     id: 1234567898719
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
     minn: 75 
-    maxn: 2 
+    maxn: 82 
     minAdRequests: 100000
   - name: "pp_viewability_80"
     id: 1234567895891
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 82 
-    maxn: 100 
+    minn: 82
+    maxn: 100
     minAdRequests: 100000
   - name: "Pakiet Standard PPG"
     id: 1234567894392
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
     minn: 35 
-    maxn: 0 
+    maxn: 60 
     minAdRequests: 200000
   - name: "Pakiet Premium PPG"
     id: 1234567894401
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 61 
-    maxn: 5 
+    minn: 60
+    maxn: 75
     minAdRequests: 100000
   - name: "Pakiet Premium+ PPG"
     id: 1234567894977
     column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 75 
-    maxn: 100 
+    minn: 75
+    maxn: 100
     minAdRequests: 100000
 
 # Company A
