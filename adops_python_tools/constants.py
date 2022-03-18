@@ -24,3 +24,5 @@ API_VERSION = "v202105"
 
 PLACEMENT_MANAGER_PATH = "/data/placement_manager.yaml"
 REPORT_MANAGER_PATH = "/data/report_manager.yaml"
+
+AD_UNIT_MANAGER_PATH = "/data/ad_unit_manager.yaml"
