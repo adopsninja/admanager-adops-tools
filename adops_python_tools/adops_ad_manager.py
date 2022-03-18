@@ -16,6 +16,7 @@ class AdOpsAdManagerClient:
         self.client = self.set_admanager_client(network_code)
         self.network_service = self.client.GetService("NetworkService", version=self._API_VERSION)
         self.placement_service = self.client.GetService("PlacementService", version=self._API_VERSION)
+        self.inventory_service = self.client.GetService("InventoryService", version=self._API_VERSION)
         self.report_downloader = self.client.GetDataDownloader(version=self._API_VERSION)
 
     def set_admanager_client(self, network_code: str=None) -> AdManagerClient:
