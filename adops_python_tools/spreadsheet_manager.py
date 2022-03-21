@@ -33,20 +33,37 @@ class SpreadsheetManager:
             ),
         )
 
-    def read_values(self, range: str):
+    def read_values(self, sheet_range: str):
         values = (
             self.service
             .spreadsheets()
             .values()
-            .get(spreadsheetId=self.spreadsheet_id, range=range)
+            .get(spreadsheetId=self.spreadsheet_id, range=sheet_range)
             .execute()
             .get("values", [])
         )
         if not values:
             return None
-            
+
         return values
 
+    def write_values( self, values: list, sheet_range: str):
+        body = {
+            "valueInputOption": "USER_ENTERED",
+            "data": [{
+                "values": values,
+                "range": sheet_range
+            }]
+        }
+        result = (
+            self.service
+            .spreadsheets()
+            .values()
+            .batchUpdate(spreadsheetId=self.spreadsheet_id, body=body)
+            .execute()
+        )
+        logger.info("{0} cells updated.".format(result.get("totalUpdatedCells")))
+        return result
 
 if __name__ == "__main__":
     spreadsheet = SpreadsheetManager("dariusz.siudak***REMOVED***", "***REMOVED***")
