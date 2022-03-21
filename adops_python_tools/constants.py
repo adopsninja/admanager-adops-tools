@@ -6,6 +6,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
     "https://mail.google.com/",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive",
 ]
 
 DEFAULT_DB_PATH = os.environ["DEFAULT_DB_PATH"]
@@ -19,6 +21,9 @@ DEFAULT_CLIENT_SECRET = os.environ["DEFAULT_CLIENT_SECRET"]
 # The redirect URI set for the given Client ID. The redirect URI for Client ID
 # generated for an installed application will always have this value.
 _REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
+TOKEN_URI = "https://oauth2.googleapis.com/token"
+TOKEN_EXPIRY = "2021-12-01T15:19:50.473501Z"
+USER_AGENT = "Python client library"
 
 API_VERSION = "v202105"
 
