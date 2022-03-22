@@ -22,7 +22,7 @@ DEFAULT_CLIENT_SECRET = os.environ["DEFAULT_CLIENT_SECRET"]
 # generated for an installed application will always have this value.
 _REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
-TOKEN_EXPIRY = "2021-12-01T15:19:50.473501Z"
+TOKEN_EXPIRY = "2022-03-21T13:15:16.922093Z"
 USER_AGENT = "Python client library"
 
 API_VERSION = "v202105"
