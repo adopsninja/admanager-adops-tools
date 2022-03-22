@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 import logging
 import os
+from datetime import datetime
 
+import pandas as pd
 from googleapiclient.discovery import build
 from oauth2client.client import GoogleCredentials
-from constants import TOKEN_URI, TOKEN_EXPIRY, USER_AGENT
 
+from constants import TOKEN_EXPIRY, TOKEN_URI, USER_AGENT
 from database import Database
 
 logger = logging.getLogger(__name__)
@@ -65,6 +67,55 @@ class SpreadsheetManager:
         logger.info("{0} cells updated.".format(result.get("totalUpdatedCells")))
         return result
 
+
+class SpreadsheetDataframe:
+    def __init__(self, values: list) -> None:
+        self.values = values
+
+    def build_dataframe(self) -> pd.DataFrame:
+        dataframe = pd.DataFrame(self.values)
+        dataframe.rename(columns=dataframe.iloc[0], inplace=True)
+        dataframe = dataframe[1:]
+        dataframe.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+
+        return dataframe
+
+    def valid_publishers(self, existing: bool) -> list:
+        dataframe = self.build_dataframe()
+        necessary_fields = (
+            (dataframe["publisher.name"] != "") &
+            (dataframe["publisher.email"] != "")
+        )
+        dataframe = dataframe.loc[necessary_fields]
+        if not existing:
+            dataframe = dataframe.loc[
+                (dataframe["publisher.status"] == "") &
+                (dataframe["publisher.accountStatus"] == "")
+            ]
+        valid_publishers = (
+            dataframe[["publisher.name", "publisher.email", "publisher.networkCode"]]
+            .drop_duplicates(subset="publisher.name")
+            .to_dict("records")
+        )
+
+        return valid_publishers
+
+    def update_publishers(self, dataframe: pd.DataFrame, publishers: list) -> pd.DataFrame:
+        if publishers:
+            for publisher in publishers:
+                condition = dataframe["publisher.name"] == publisher["name"]
+                dataframe.loc[condition, "publisher.status"] = publisher["childPublisher"]["status"]
+                dataframe.loc[condition, "publisher.accountStatus"] = publisher["childPublisher"]["accountStatus"]
+                dataframe.loc[condition, "publisher.networkCode"] = publisher["childPublisher"]["childNetworkCode"]
+
+        return dataframe
+        
+    def dataframe_to_list(self, dataframe: pd.DataFrame) -> list:
+        return [dataframe.columns.values.tolist()] + dataframe.values.tolist()
+
+
 if __name__ == "__main__":
     spreadsheet = SpreadsheetManager("dariusz.siudak***REMOVED***", "***REMOVED***")
-    spreadsheet.read_values("re-approve!A:Z")
+    val = spreadsheet.read_values("re-approve!A:Z")
+    spreadsheet_df = SpreadsheetDataframe(val)
+    print(spreadsheet_df.valid_publishers(True))
