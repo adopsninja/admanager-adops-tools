@@ -25,7 +25,7 @@ TOKEN_URI = "https://oauth2.googleapis.com/token"
 TOKEN_EXPIRY = "2022-03-21T13:15:16.922093Z"
 USER_AGENT = "Python client library"
 
-API_VERSION = "v202105"
+API_VERSION = "v202202"
 
 PLACEMENT_MANAGER_PATH = "/data/placement_manager.yaml"
 REPORT_MANAGER_PATH = "/data/report_manager.yaml"
