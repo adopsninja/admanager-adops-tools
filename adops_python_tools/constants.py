@@ -24,6 +24,7 @@ _REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
 TOKEN_EXPIRY = "2022-03-21T13:15:16.922093Z"
 USER_AGENT = "Python client library"
+SHEET_RANGE = "re-approve!A:Z"
 
 API_VERSION = "v202202"
 
