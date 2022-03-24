@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import logging
-import functools
 
 from googleads.ad_manager import StatementBuilder
 from googleads.errors import GoogleAdsServerFault
@@ -63,12 +62,22 @@ class MultipleCustomerManagement:
         valid_publishers = [publisher["publisher.name"] for publisher in valid_publishers]
         statement = self.ad_manager.build_statement('name', valid_publishers)
         status = self.ad_manager.get_items_by_statement(statement, self.ad_manager.company_service.getCompaniesByStatement)
-        updated_dataframe = self.spreadsheet_dataframe.update_publishers(dataframe, status)
 
-        return updated_dataframe
+        return self.spreadsheet_dataframe.update_publishers(dataframe, status)
 
-    def update_sites(self):
-        pass
+    def update_sites(self, dataframe, *args, **kwargs):
+        valid_sites = self.spreadsheet_dataframe.valid_sites(dataframe, *args, **kwargs)
+        if not valid_sites:
+            return dataframe
+        if kwargs.get("exists", True) == False:
+            unique_sites = list({site["site.url"]:site for site in valid_sites}.values())
+            self.create_sites(unique_sites)
+
+        valid_sites = list(set([site["site.url"] for site in valid_sites]))
+        statement = self.ad_manager.build_statement('url', valid_sites)
+        status = self.ad_manager.get_items_by_statement(statement, self.ad_manager.site_service.getSitesByStatement)
+
+        return self.spreadsheet_dataframe.update_sites(dataframe, status)
 
     def update_status(self, func, *args, **kwargs):
         dataframe = self.spreadsheet_dataframe.build_dataframe()
@@ -76,10 +85,16 @@ class MultipleCustomerManagement:
 
         updated_values = self.spreadsheet_dataframe.dataframe_to_list(updated_dataframe)
         self.spreadsheet_dataframe.spreadsheet_manager.write_values(updated_values)
+        self.spreadsheet_dataframe.refresh_values()
+
 
     def update_mcm(self):
         self.update_status(self.update_publishers, exists=True)
         self.update_status(self.update_publishers, exists=False)
+        self.update_status(self.update_sites, exists=True)
+        self.update_status(self.update_sites, exists=False)
+        self.submit_for_approval()
+        self.update_status(self.update_sites, exists=True)
 
 
 if __name__ == "__main__":
