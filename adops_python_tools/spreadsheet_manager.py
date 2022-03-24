@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 import logging
-import os
-from datetime import datetime
 
 import pandas as pd
 from googleapiclient.discovery import build
@@ -93,13 +91,12 @@ class SpreadsheetDataframe:
                 (dataframe["publisher.status"] == "") &
                 (dataframe["publisher.accountStatus"] == "")
             ]
-        valid_publishers = (
+
+        return (
             dataframe[["publisher.name", "publisher.email", "publisher.networkCode"]]
             .drop_duplicates(subset="publisher.name")
             .to_dict("records")
         )
-
-        return valid_publishers
 
     def update_publishers(self, dataframe: pd.DataFrame, publishers: list) -> pd.DataFrame:
         if publishers:
@@ -110,6 +107,34 @@ class SpreadsheetDataframe:
                 dataframe.loc[condition, "publisher.networkCode"] = publisher["childPublisher"]["childNetworkCode"]
 
         return dataframe
+
+    def valid_sites(self, dataframe: pd.DataFrame, exists: bool) -> list:
+        necessary_fields = (
+            (dataframe["publisher.accountStatus"] == "APPROVED") &
+            (dataframe["publisher.status"] == "APPROVED")
+        )
+        dataframe = dataframe.loc[necessary_fields]
+        if not exists:
+            condition = dataframe["site.approvalStatus"].isin(["", None])
+            dataframe = dataframe.loc[condition]
+
+        return (
+            dataframe[["publisher.networkCode", "site.url"]]
+            .to_dict("records"))
+
+    def update_sites(self, dataframe: pd.DataFrame, sites: list) -> pd.DataFrame:
+        if sites:
+            for site in sites:
+                condition = (
+                    (dataframe["site.url"] == site["url"]) &
+                    (dataframe["publisher.networkCode"] == site["childNetworkCode"])
+                )
+                dataframe.loc[condition, "site.approvalStatus"] = site["approvalStatus"]
+        
+        return dataframe
         
     def dataframe_to_list(self, dataframe: pd.DataFrame) -> list:
         return [dataframe.columns.values.tolist()] + dataframe.values.tolist()
+
+    def refresh_values(self):
+        self.values = self.spreadsheet_manager.read_values()
