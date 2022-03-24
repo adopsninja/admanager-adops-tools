@@ -1,0 +1,11 @@
+mox:
+  email: "dariusz.siudak***REMOVED***"
+  networkCode: "***REMOVED***"
+  spreadsheetId: "***REMOVED***"
+  sheetRange: "Video New!A:Z"
+
+test: 
+  email: "dariusz.siudak***REMOVED***"
+  networkCode: "***REMOVED***"
+  spreadsheetId: "***REMOVED***"
+  sheetRange: "re-approve!A:Z"

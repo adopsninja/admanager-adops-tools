@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import os
+
+API_VERSION = "v202202"
 # The Ad Manager API OAuth2 and GMAIL scope.
 SCOPES = [
     "https://www.googleapis.com/auth/dfp",
@@ -24,11 +26,8 @@ _REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 TOKEN_URI = "https://oauth2.googleapis.com/token"
 TOKEN_EXPIRY = "2022-03-21T13:15:16.922093Z"
 USER_AGENT = "Python client library"
-SHEET_RANGE = "re-approve!A:Z"
-
-API_VERSION = "v202202"
 
 PLACEMENT_MANAGER_PATH = "/data/placement_manager.yaml"
 REPORT_MANAGER_PATH = "/data/report_manager.yaml"
-
+MCM_MANAGER_PATH = "/data/mcm_manager.yaml"
 AD_UNIT_MANAGER_PATH = "/data/ad_unit_manager.yaml"
