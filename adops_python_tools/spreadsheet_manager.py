@@ -14,9 +14,10 @@ logger = logging.getLogger(__name__)
 
 
 class SpreadsheetManager:
-    def __init__(self, email: str, spreadsheet_id: str) -> None:
+    def __init__(self, email: str, spreadsheet_id: str, range_name: str) -> None:
         self.email = email
         self.spreadsheet_id = spreadsheet_id
+        self.range_name = range_name
         self.service = self.sheets_service()
 
     def sheets_service(self):
@@ -35,12 +36,12 @@ class SpreadsheetManager:
             ),
         )
 
-    def read_values(self, sheet_range: str):
+    def read_values(self):
         values = (
             self.service
             .spreadsheets()
             .values()
-            .get(spreadsheetId=self.spreadsheet_id, range=sheet_range)
+            .get(spreadsheetId=self.spreadsheet_id, range=self.range_name)
             .execute()
             .get("values", [])
         )
@@ -49,12 +50,12 @@ class SpreadsheetManager:
 
         return values
 
-    def write_values( self, values: list, sheet_range: str):
+    def write_values(self, values: list):
         body = {
             "valueInputOption": "USER_ENTERED",
             "data": [{
                 "values": values,
-                "range": sheet_range
+                "range": self.range_name
             }]
         }
         result = (
@@ -69,8 +70,9 @@ class SpreadsheetManager:
 
 
 class SpreadsheetDataframe:
-    def __init__(self, values: list) -> None:
-        self.values = values
+    def __init__(self, spreadsheet_manager: SpreadsheetManager) -> None:
+        self.spreadsheet_manager = spreadsheet_manager
+        self.values = self.spreadsheet_manager.read_values()
 
     def build_dataframe(self) -> pd.DataFrame:
         dataframe = pd.DataFrame(self.values)
@@ -80,14 +82,13 @@ class SpreadsheetDataframe:
 
         return dataframe
 
-    def valid_publishers(self, existing: bool) -> list:
-        dataframe = self.build_dataframe()
+    def valid_publishers(self, dataframe: pd.DataFrame, exists: bool) -> list:
         necessary_fields = (
             (dataframe["publisher.name"] != "") &
             (dataframe["publisher.email"] != "")
         )
         dataframe = dataframe.loc[necessary_fields]
-        if not existing:
+        if not exists:
             dataframe = dataframe.loc[
                 (dataframe["publisher.status"] == "") &
                 (dataframe["publisher.accountStatus"] == "")
@@ -112,10 +113,3 @@ class SpreadsheetDataframe:
         
     def dataframe_to_list(self, dataframe: pd.DataFrame) -> list:
         return [dataframe.columns.values.tolist()] + dataframe.values.tolist()
-
-
-if __name__ == "__main__":
-    spreadsheet = SpreadsheetManager("dariusz.siudak***REMOVED***", "***REMOVED***")
-    val = spreadsheet.read_values("re-approve!A:Z")
-    spreadsheet_df = SpreadsheetDataframe(val)
-    print(spreadsheet_df.valid_publishers(True))
