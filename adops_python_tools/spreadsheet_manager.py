@@ -8,6 +8,7 @@ from oauth2client.client import GoogleCredentials
 from constants import TOKEN_EXPIRY, TOKEN_URI, USER_AGENT
 from database import Database
 
+logging.getLogger("googleapiclient").setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
@@ -138,3 +139,21 @@ class SpreadsheetDataframe:
 
     def refresh_values(self):
         self.values = self.spreadsheet_manager.read_values()
+
+    def site_status(self):
+        dataframe = self.build_dataframe()[["site.url", "site.approvalStatus"]]
+        dataframe.set_index("site.url", inplace=True)
+        
+        return dataframe
+
+    def compare_site_statuses(self, dataframe_before, dataframe_after):
+        result = dataframe_before.compare(dataframe_after)
+        result = result.droplevel(level=0, axis=1)
+        result = result.reset_index().drop_duplicates().reset_index(drop=True)
+        result.rename(
+            columns={
+                "self": "site.approvalStatus.before",
+                "other": "site.approvalStatus.after"
+            }, inplace=True)
+
+        return result
