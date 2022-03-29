@@ -2,6 +2,7 @@
 import logging
 
 import pandas as pd
+import pandas.io.formats.style
 from googleapiclient.discovery import build
 from oauth2client.client import GoogleCredentials
 
@@ -157,3 +158,22 @@ class SpreadsheetDataframe:
             }, inplace=True)
 
         return result
+
+    def dataframe_to_html(self, dataframe):
+        if dataframe is None:
+            return None
+        result = """<html><head><style>
+        h2 {text-align: center;font-family: Helvetica, Arial, sans-serif;}
+        table, th, td {border: 1px solid black;border-collapse: collapse;}
+        th, td {padding: 1px;text-align: left;font-family: Helvetica, Arial, sans-serif;font-size: 90%;}
+        table tbody tr:hover {background-color: #dddddd;}
+        .wide {width: 35%;}
+        </style></head><body>"""
+
+        if type(dataframe) == pandas.io.formats.style.Styler:
+            result += dataframe.render()
+        else:
+            result += dataframe.to_html(classes="wide", escape=False)
+        result += """</body></html>"""
+
+        return result.replace("\n", "")
