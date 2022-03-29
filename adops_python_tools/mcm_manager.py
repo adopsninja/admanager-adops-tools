@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 import logging
 
+import pandas as pd
 from googleads.ad_manager import StatementBuilder
 from googleads.errors import GoogleAdsServerFault
 
 from adops_ad_manager import AdOpsAdManagerClient
-from constants import API_VERSION, MCM_MANAGER_PATH
 from config_reader import ConfigReader
+from constants import API_VERSION, MCM_MANAGER_PATH
 from spreadsheet_manager import SpreadsheetDataframe, SpreadsheetManager
 
+logging.getLogger("googleads").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 
@@ -50,9 +52,15 @@ class MultipleCustomerManagement:
             .OrderBy("url", ascending=True)
             .Limit(500)
         )
-        sites = self.ad_manager.site_service.performSiteAction({"xsi_type": "SubmitSiteForApproval"}, statement.ToStatement())
-
-        return sites
+        try:
+            sites = self.ad_manager.site_service.performSiteAction(
+                {"xsi_type": "SubmitSiteForApproval"}, 
+                statement.ToStatement()
+            )
+            return sites
+        except GoogleAdsServerFault as e:
+            logger.error(f"Couldn't submit sites for approval. Error was: {e}")
+            return None
 
     def update_publishers(self, dataframe, *args, **kwargs):
         valid_publishers = self.spreadsheet_dataframe.valid_publishers(dataframe, *args, **kwargs)
@@ -96,18 +104,34 @@ class MultipleCustomerManagement:
         self.submit_for_approval()
         self.update_status(self.update_sites, exists=True)
 
+    def status_change(self):
+        before = self.spreadsheet_dataframe.site_status()
+        self.update_mcm()
+        after = self.spreadsheet_dataframe.site_status()
+        result = self.spreadsheet_dataframe.compare_site_statuses(before, after)
 
-if __name__ == "__main__":
+        if result.empty:
+            logger.info("No status change for Company M sites.")
+            return None
+
+        logger.info(f"Status update:\n{result}")
+
+        return result
+
+def main(env="test"):
     config = ConfigReader(MCM_MANAGER_PATH).read_yaml_config()
     ad_manager = AdOpsAdManagerClient(
-        config["test"]["email"],
-        config["test"]["networkCode"]
+        config[env]["email"],
+        config[env]["networkCode"]
     )
     spreadsheet_manager = SpreadsheetManager(
-        config["test"]["email"],
-        config["test"]["spreadsheetId"],
-        config["test"]["sheetRange"]
+        config[env]["email"],
+        config[env]["spreadsheetId"],
+        config[env]["sheetRange"]
     )
     spreadsheet_dataframe = SpreadsheetDataframe(spreadsheet_manager)
     mcm_manager = MultipleCustomerManagement(ad_manager, spreadsheet_dataframe)
-    mcm_manager.update_mcm()
+    mcm_manager.status_change()
+
+if __name__ == "__main__":
+    main("test")
