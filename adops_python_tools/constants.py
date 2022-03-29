@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import datetime
 import os
 
 API_VERSION = "v202202"
@@ -11,6 +12,8 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive",
 ]
+
+TODAY = datetime.date.today().strftime("%d-%b-%Y")
 
 DEFAULT_DB_PATH = os.environ["DEFAULT_DB_PATH"]
 DEFAULT_APP_NAME = os.environ["DEFAULT_APP_NAME"]
