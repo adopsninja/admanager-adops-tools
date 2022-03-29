@@ -5,7 +5,7 @@ mox:
   sheetRange: "Video New!A:Z"
   notification:
     sender: "dariusz.siudak***REMOVED***"
-    to: "customer***REMOVED***"
+    to: "customer***REMOVED***, dariusz.siudak***REMOVED***"
     subject: "MCM - aktualizacja statusów domen Company M" 
 
 test: 
