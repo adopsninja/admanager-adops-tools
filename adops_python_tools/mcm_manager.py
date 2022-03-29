@@ -9,6 +9,7 @@ from adops_ad_manager import AdOpsAdManagerClient
 from config_reader import ConfigReader
 from constants import API_VERSION, MCM_MANAGER_PATH
 from spreadsheet_manager import SpreadsheetDataframe, SpreadsheetManager
+from notification_manager import NotificationManager
 
 logging.getLogger("googleads").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
@@ -99,16 +100,20 @@ class MultipleCustomerManagement:
     def update_mcm(self):
         self.update_status(self.update_publishers, exists=True)
         self.update_status(self.update_publishers, exists=False)
+        logger.info("Publishers statuses checked.")
         self.update_status(self.update_sites, exists=True)
         self.update_status(self.update_sites, exists=False)
+        logger.info("Domains statuses checked. Submit for approval.")
         self.submit_for_approval()
         self.update_status(self.update_sites, exists=True)
+        logger.info("Update domains statuses after submission.")
 
     def status_change(self):
         before = self.spreadsheet_dataframe.site_status()
         self.update_mcm()
         after = self.spreadsheet_dataframe.site_status()
         result = self.spreadsheet_dataframe.compare_site_statuses(before, after)
+        logger.info("Domains statuses before and after compared. Result:")
 
         if result.empty:
             logger.info("No status change for Company M sites.")
@@ -118,20 +123,32 @@ class MultipleCustomerManagement:
 
         return result
 
-def main(env="test"):
+def mox_mcm_status_update(env="test"):
     config = ConfigReader(MCM_MANAGER_PATH).read_yaml_config()
+    logger.info("YAML configuration loaded.")
     ad_manager = AdOpsAdManagerClient(
         config[env]["email"],
         config[env]["networkCode"]
     )
+    logger.info("AdOpsAdManagerClient loaded.")
     spreadsheet_manager = SpreadsheetManager(
         config[env]["email"],
         config[env]["spreadsheetId"],
         config[env]["sheetRange"]
     )
     spreadsheet_dataframe = SpreadsheetDataframe(spreadsheet_manager)
+    logger.info("SpreadsheetManager and SpreadsheetDataframe loaded.")
     mcm_manager = MultipleCustomerManagement(ad_manager, spreadsheet_dataframe)
-    mcm_manager.status_change()
-
-if __name__ == "__main__":
-    main("test")
+    logger.info("MultipleCustomerManagement loaded.")
+    status_dataframe = mcm_manager.status_change()
+    status_table = spreadsheet_dataframe.dataframe_to_html(status_dataframe)
+    notification_manager = NotificationManager(config[env]["email"])
+    logger.info("NotificationManager loaded.")
+    message = notification_manager.mcm_notification_message(status_table)
+    message = notification_manager.create_message(
+        config[env]["notification"]["to"],
+        config[env]["notification"]["sender"],
+        config[env]["notification"]["subject"],
+        message
+    )
+    notification_manager.send_message(message)
