@@ -109,6 +109,7 @@ class Database:
 
     def remove_user_credentials(self):
         """Removes user from credentials table based on user choice."""
+        self.display_users()
         users = self.get_users()
         user_to_remove = int(input("Pick number: "))
         with self.db_connection:
@@ -121,12 +122,16 @@ class Database:
     def get_users(self):
         """Gets all available users from credentials table."""
         users = self.db_cursor.execute("SELECT * FROM credentials").fetchall()
-        print("\n::: Available users :::")
         available_users = {}
         for index, user in enumerate(sorted(map(self.Credentials._make, users))):
-            print(f"{index}: {user.email}")
             available_users.update({index: user.email})
         return available_users
+
+    def display_users(self):
+        available_users = self.get_users()
+        print("\n::: Available users :::")
+        for key, name in available_users.items():
+            print(f"{key}: {name}")
 
     def database_CLI(self):
         self.credentials_table()
@@ -138,7 +143,7 @@ class Database:
 
         while True:
             print("\nCurrent users in database:")
-            self.get_users()
+            self.display_users()
             print("\nWhat would you like to do next? (press q to quit)")
             for key, value in options.items():
                 print(f"{key}: {value}")
