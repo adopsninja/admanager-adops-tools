@@ -63,10 +63,11 @@ class AdOpsAdManagerClient:
         return statement
     
     def get_items_by_statement(self, statement: StatementBuilder, callback):
+        logger.info(f"Statement query: {statement.ToStatement()['query']}")
         items = []
         while True:
             response = callback(statement.ToStatement())
-            logger.info(f"startIndex: {response['startIndex']}, totalResultSetSize: {response['totalResultSetSize']}")
+            logger.debug(f"startIndex: {response['startIndex']}, totalResultSetSize: {response['totalResultSetSize']}")
             if "results" in response and response["results"]:
                 items.extend(response["results"])
                 statement.offset += statement.limit
