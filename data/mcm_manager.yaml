@@ -3,9 +3,17 @@ mox:
   networkCode: "***REMOVED***"
   spreadsheetId: "***REMOVED***"
   sheetRange: "Video New!A:Z"
+  notification:
+    sender: "dariusz.siudak***REMOVED***"
+    to: "customer***REMOVED***"
+    subject: "MCM - aktualizacja statusów domen Company M" 
 
 test: 
   email: "dariusz.siudak***REMOVED***"
   networkCode: "***REMOVED***"
   spreadsheetId: "***REMOVED***"
   sheetRange: "re-approve!A:Z"
+  notification:
+    sender: "dariusz.siudak***REMOVED***"
+    to: "dariusz.siudak***REMOVED***"
+    subject: "MCM - aktualizacja statusów domen Company M" 
