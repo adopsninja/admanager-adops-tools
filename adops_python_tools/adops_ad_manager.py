@@ -69,6 +69,8 @@ class AdOpsAdManagerClient:
             response = callback(statement.ToStatement())
             logger.debug(f"startIndex: {response['startIndex']}, totalResultSetSize: {response['totalResultSetSize']}")
             if "results" in response and response["results"]:
+                if statement.limit == 1:
+                    return response["results"]
                 items.extend(response["results"])
                 statement.offset += statement.limit
             else:
