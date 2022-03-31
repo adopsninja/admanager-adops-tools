@@ -2,6 +2,7 @@
 import logging
 
 from constants import PLACEMENT_MANAGER_PATH
+from mcm_manager import mox_mcm_status_update
 from placement_manager import PlacementManager
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
@@ -12,6 +13,7 @@ logging.getLogger("report_manager").setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 def main():
+    mox_mcm_status_update("mox")
     PlacementManager(PLACEMENT_MANAGER_PATH).update_performance_placements("Company Y")
     PlacementManager(PLACEMENT_MANAGER_PATH).update_performance_placements("Company A")
     PlacementManager(PLACEMENT_MANAGER_PATH).update_performance_placements("Company E")
