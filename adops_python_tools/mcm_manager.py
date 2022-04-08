@@ -1,15 +1,12 @@
 #!/usr/bin/env python
 import logging
 
-import pandas as pd
 from googleads.ad_manager import StatementBuilder
 from googleads.errors import GoogleAdsServerFault
 
 from adops_ad_manager import AdOpsAdManagerClient
-from config_reader import ConfigReader
-from constants import API_VERSION, MCM_MANAGER_PATH
-from spreadsheet_manager import SpreadsheetDataframe, SpreadsheetManager
-from notification_manager import NotificationManager
+from constants import API_VERSION
+from spreadsheet_manager import SpreadsheetDataframe
 
 logging.getLogger("googleads").setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
@@ -122,33 +119,3 @@ class MultipleCustomerManagement:
         logger.info(f"Status update:\n{result}")
 
         return result
-
-def mox_mcm_status_update(env="test"):
-    config = ConfigReader(MCM_MANAGER_PATH).read_yaml_config()
-    logger.info("YAML configuration loaded.")
-    ad_manager = AdOpsAdManagerClient(
-        config[env]["email"],
-        config[env]["networkCode"]
-    )
-    logger.info("AdOpsAdManagerClient loaded.")
-    spreadsheet_manager = SpreadsheetManager(
-        config[env]["email"],
-        config[env]["spreadsheetId"],
-        config[env]["sheetRange"]
-    )
-    spreadsheet_dataframe = SpreadsheetDataframe(spreadsheet_manager)
-    logger.info("SpreadsheetManager and SpreadsheetDataframe loaded.")
-    mcm_manager = MultipleCustomerManagement(ad_manager, spreadsheet_dataframe)
-    logger.info("MultipleCustomerManagement loaded.")
-    status_dataframe = mcm_manager.status_change()
-    status_table = spreadsheet_dataframe.dataframe_to_html(status_dataframe)
-    notification_manager = NotificationManager(config[env]["email"])
-    logger.info("NotificationManager loaded.")
-    message = notification_manager.mcm_notification_message(status_table)
-    message = notification_manager.create_message(
-        config[env]["notification"]["to"],
-        config[env]["notification"]["sender"],
-        config[env]["notification"]["subject"],
-        message
-    )
-    notification_manager.send_message(message)
