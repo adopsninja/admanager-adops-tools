@@ -13,3 +13,18 @@ placementPerformance:
   adUnitView: "FLAT"
   dateRangeType: "CUSTOM_DATE"
   timeZoneType: "AD_EXCHANGE"
+
+adxFillRateNotification:
+  statement: ""
+  dimensions:
+    - "AD_EXCHANGE_DATE"
+    - "AD_EXCHANGE_URL"
+    - "AD_EXCHANGE_PRODUCT_NAME"
+  columns:
+    - "AD_EXCHANGE_AD_REQUESTS"
+    - "AD_EXCHANGE_COVERAGE"
+  adUnitView: "FLAT"
+  dateRangeType: "YESTERDAY"
+  startDate: 1
+  endDate: 1
+  timeZoneType: "AD_EXCHANGE"

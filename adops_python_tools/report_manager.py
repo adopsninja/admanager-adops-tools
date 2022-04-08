@@ -4,10 +4,11 @@ import os
 import tempfile
 from pathlib import PurePath
 
+import pandas
 from googleads import errors
 
-from config_reader import ConfigReader
 from adops_ad_manager import AdOpsAdManagerClient
+from config_reader import ConfigReader
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +29,7 @@ class ReportManager:
         }
         return query
 
-    def get_report(self, client: AdOpsAdManagerClient, report_type: str="placementPerformance") -> str:
+    def get_report(self, client: AdOpsAdManagerClient, report_type: str="placementPerformance"):
         output_path = PurePath(
             self.config["outputFolderPath"], datetime.datetime.now().strftime("%d%m%Y_%H%M")
         )
@@ -58,8 +59,50 @@ class ReportManager:
         return report_path
 
     @staticmethod
-    def create_directory(directory: str) -> str:
+    def create_directory(directory: PurePath):
         if not os.path.exists(directory):
             logger.info(f"Path {directory} does not exist. Trying to create.")
             os.makedirs(directory)
             return directory
+
+
+def process_adx_fillrate_report(report_path: PurePath, min_adrequests: int = 50000) -> pandas.DataFrame:
+    excluded_domains = "***REMOVED***"
+    dataframe = pandas.read_csv(report_path, compression="gzip")
+    dataframe.rename(
+            columns={
+                "Dimension.AD_EXCHANGE_DATE": "Date",
+                "Dimension.AD_EXCHANGE_URL": "Domain",
+                "Dimension.AD_EXCHANGE_PRODUCT_NAME": "Product",
+                "Column.AD_EXCHANGE_AD_REQUESTS": "Ad requests",
+                "Column.AD_EXCHANGE_COVERAGE": "Coverage",
+            },
+            inplace=True
+        )
+    dataframe = dataframe.loc[~dataframe["Domain"].str.contains(excluded_domains)]
+    dataframe = dataframe[(dataframe["Ad requests"] > min_adrequests) & (dataframe["Coverage"] <= 0.1)]
+    dataframe["Coverage"] = dataframe["Coverage"].apply(lambda x: "{0:.2f} %".format(x * 100))
+    dataframe = dataframe.sort_values(["Coverage"], ascending=False).reset_index(drop=True)
+    dataframe.index += 1
+
+    return dataframe
+
+def dataframe_to_html(dataframe):
+    if dataframe is None:
+        return None
+    result = """<html><head><style>
+    h2 {text-align: center;font-family: Helvetica, Arial, sans-serif;}
+    table, th, td {border: 1px solid black;border-collapse: collapse;}
+    th, td {padding: 1px;text-align: left;font-family: Helvetica, Arial, sans-serif;font-size: 90%;}
+    table tbody tr:hover {background-color: #dddddd;}
+    .wide {width: 35%;}
+    </style></head><body>"""
+
+    if type(dataframe) == pandas.io.formats.style.Styler:  # type: ignore
+        result += dataframe.render()
+    else:
+        result += dataframe.to_html(classes="wide", escape=False)
+    result += """</body></html>"""
+
+    return result.replace("\n", "")
+
