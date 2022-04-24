@@ -1,4 +1,4 @@
-outputFolderPath: "/home/adopsninja/code/adops-python-tools/data"
+outputFolderPath: "/data/reports"
 placementPerformance:
   statement: ""
   dimensions:

@@ -3,6 +3,7 @@ import logging
 from googleads.ad_manager import AdManagerClient
 from googleads.oauth2 import GoogleRefreshTokenClient
 from googleads.ad_manager import StatementBuilder
+from typing import Union
 
 from constants import API_VERSION
 from database import Database
@@ -18,9 +19,10 @@ class AdOpsAdManagerClient:
         self.inventory_service = self.client.GetService("InventoryService", version=API_VERSION)
         self.site_service = self.client.GetService("SiteService", version=API_VERSION)
         self.company_service = self.client.GetService("CompanyService", version=API_VERSION)
+        self.creative_service = self.client.GetService("CreativeService", version=API_VERSION)
         self.report_downloader = self.client.GetDataDownloader(version=API_VERSION)
 
-    def set_admanager_client(self, network_code: str=None) -> AdManagerClient:
+    def set_admanager_client(self, network_code: Union[str, None] = None) -> AdManagerClient:
         credentials = Database().get_credentials(self.email)
         refresh_token_client = GoogleRefreshTokenClient(
             credentials.client_id, 
@@ -29,17 +31,18 @@ class AdOpsAdManagerClient:
         )
         if network_code:
             return AdManagerClient(refresh_token_client, credentials.app_name, network_code)
-        else:
-            client = AdManagerClient(refresh_token_client, credentials.app_name)
-            all_networks = client.GetService("NetworkService", version=API_VERSION).getAllNetworks()
-            print("Available Ad manager networks:")
-            network_codes = {}
-            for index, network in enumerate(all_networks):
-                print(f"{index}: {network['networkCode']} {network['displayName']}")
-                network_codes.update({f"{index}": network["networkCode"]})
-            if not network_code:
-                network_code = network_codes.get(input("Pick number: "))
-                return AdManagerClient(refresh_token_client, credentials.app_name, network_code)
+            
+        client = AdManagerClient(refresh_token_client, credentials.app_name)
+        all_networks = client.GetService("NetworkService", version=API_VERSION).getAllNetworks()
+        print("Available Ad manager networks:")
+        network_codes = {}
+
+        for index, network in enumerate(all_networks):
+            print(f"{index}: {network['networkCode']} {network['displayName']}")
+            network_codes.update({f"{index}": network["networkCode"]})
+        network_code = network_codes.get(input("Pick number: "))
+
+        return AdManagerClient(refresh_token_client, credentials.app_name, network_code)
 
     def build_statement(self, key, value, limit=500, contains=False):
         statement = (
