@@ -162,7 +162,7 @@ class PrebidManager:
         with open(PurePath(config_path), "w") as config_file:
             if not config.get("creativeIds", []):
                 config["creativeIds"] = self.creative_template(client)
-                yaml.safe_dump(config, config_file)
+            yaml.safe_dump(config, config_file)
             self.config = config
 
         return config

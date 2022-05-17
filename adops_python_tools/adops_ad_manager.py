@@ -17,9 +17,14 @@ class AdOpsAdManagerClient:
         self.network_service = self.client.GetService("NetworkService", version=API_VERSION)
         self.placement_service = self.client.GetService("PlacementService", version=API_VERSION)
         self.inventory_service = self.client.GetService("InventoryService", version=API_VERSION)
+        self.custom_targeting_service = self.client.GetService("CustomTargetingService", version=API_VERSION)
         self.site_service = self.client.GetService("SiteService", version=API_VERSION)
         self.company_service = self.client.GetService("CompanyService", version=API_VERSION)
         self.creative_service = self.client.GetService("CreativeService", version=API_VERSION)
+        self.user_service = self.client.GetService("UserService", version=API_VERSION)
+        self.order_service = self.client.GetService("OrderService", version=API_VERSION)
+        self.line_item_service = self.client.GetService("LineItemService", version=API_VERSION)
+        self.lica_service = self.client.GetService("LineItemCreativeAssociationService", version=API_VERSION)
         self.report_downloader = self.client.GetDataDownloader(version=API_VERSION)
 
     def set_admanager_client(self, network_code: Union[str, None] = None) -> AdManagerClient:
