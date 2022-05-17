@@ -249,14 +249,14 @@ class PrebidManager:
         print(keys[0])
         return keys
 
-def main():
+def build_prebid_setup(start: float, step: float, ammount: int) -> None:
     config_path = "/data/prebid_manager.yaml"
     prebid_manager = PrebidManager(config_path)
     client = AdOpsAdManagerClient(prebid_manager.config.get("email"), prebid_manager.config.get("networkCode"))
     prebid_manager.create_creatives(client, config_path)
 
-    order_id = prebid_manager.create_order(client, 0.00, 0.01, 1)
-    todo_line_items = prebid_manager.prepare_line_items(client, 0.00, 0.01, 1, order_id)
+    order_id = prebid_manager.create_order(client, start, step, ammount)
+    todo_line_items = prebid_manager.prepare_line_items(client, start, step, ammount, order_id)
     prebid_manager.create_line_items(client, todo_line_items)
     statement = client.build_statement("orderId", order_id)
     line_item_ids = client.get_items_by_statement(statement, client.line_item_service.getLineItemsByStatement)
@@ -265,6 +265,14 @@ def main():
 
     for creative_id in creative_ids:
         prebid_manager.create_licas(client, line_item_ids, creative_id)
+
+def main():
+    build_prebid_setup(0.00, 0.01, 450)
+    build_prebid_setup(4.50, 0.01, 450)
+    build_prebid_setup(9.00, 0.01, 450)
+    build_prebid_setup(13.50, 0.01, 450)
+    build_prebid_setup(18.00, 0.01, 200)
+    build_prebid_setup(20.00, 1.00, 80)
 
 if __name__ == "__main__":
     main()
