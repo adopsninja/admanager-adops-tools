@@ -11,6 +11,7 @@ import yaml
 
 from adops_ad_manager import AdOpsAdManagerClient
 from config_reader import ConfigReader
+from constants import PREBID_MANAGER_PATH
 from helpers import item_chunks, random_id
 
 logger = logging.getLogger(__name__)
@@ -250,10 +251,9 @@ class PrebidManager:
         return keys
 
 def build_prebid_setup(start: float, step: float, ammount: int) -> None:
-    config_path = "/data/prebid_manager.yaml"
-    prebid_manager = PrebidManager(config_path)
+    prebid_manager = PrebidManager(PREBID_MANAGER_PATH)
     client = AdOpsAdManagerClient(prebid_manager.config.get("email"), prebid_manager.config.get("networkCode"))
-    prebid_manager.create_creatives(client, config_path)
+    prebid_manager.create_creatives(client, PREBID_MANAGER_PATH)
 
     order_id = prebid_manager.create_order(client, start, step, ammount)
     todo_line_items = prebid_manager.prepare_line_items(client, start, step, ammount, order_id)
