@@ -131,7 +131,7 @@ class PrebidManager:
                         if e["errorString"] == "UniqueError.NOT_UNIQUE":
                             print("UniqueError.NOT_UNIQUE")
 
-    def creative_template(self, client: AdOpsAdManagerClient) -> List[int]:
+    def create_creatives(self, client: AdOpsAdManagerClient) -> List[int]:
         today = datetime.datetime.utcnow().strftime("%H%M%S_%d%m%Y")
         creatives = []
         for _ in range(8):
@@ -156,13 +156,13 @@ class PrebidManager:
 
         return creative_ids
 
-    def create_creatives(self, client: AdOpsAdManagerClient, config_path: str) -> Dict:
+    def prepare_creatives(self, client: AdOpsAdManagerClient, config_path: str) -> Dict:
         with open(PurePath(config_path), "r") as config_file:
             config = yaml.safe_load(config_file)
 
         with open(PurePath(config_path), "w") as config_file:
             if not config.get("creativeIds", []):
-                config["creativeIds"] = self.creative_template(client)
+                config["creativeIds"] = self.create_creatives(client)
             yaml.safe_dump(config, config_file)
             self.config = config
 
@@ -253,7 +253,7 @@ class PrebidManager:
 def build_prebid_setup(start: float, step: float, ammount: int) -> None:
     prebid_manager = PrebidManager(PREBID_MANAGER_PATH)
     client = AdOpsAdManagerClient(prebid_manager.config.get("email"), prebid_manager.config.get("networkCode"))
-    prebid_manager.create_creatives(client, PREBID_MANAGER_PATH)
+    prebid_manager.prepare_creatives(client, PREBID_MANAGER_PATH)
 
     order_id = prebid_manager.create_order(client, start, step, ammount)
     todo_line_items = prebid_manager.prepare_line_items(client, start, step, ammount, order_id)
