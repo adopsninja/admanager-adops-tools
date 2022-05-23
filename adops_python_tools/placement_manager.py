@@ -1,4 +1,5 @@
 import logging
+from pathlib import PurePath
 
 import pandas as pd
 from googleads import errors
@@ -6,7 +7,7 @@ from googleads.ad_manager import StatementBuilder
 
 from adops_ad_manager import AdOpsAdManagerClient
 from config_reader import ConfigReader
-from constants import REPORT_MANAGER_PATH
+from constants import API_VERSION, REPORT_MANAGER_PATH
 from report_manager import ReportManager
 
 logger = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ class PlacementManager:
         self.config_reader = ConfigReader(config_path)
         self.config = self.config_reader.read_yaml_config()
 
-    def clean_up_report(self, report: str) -> pd.DataFrame:
+    def clean_up_report(self, report: PurePath) -> pd.DataFrame:
         dataframe = pd.read_csv(report, compression="gzip")
         dataframe["Column.AD_EXCHANGE_AD_REQUEST_ECPM"] /= 1000000
         dataframe["Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"] *= 100
@@ -76,7 +77,7 @@ class PlacementManager:
 
     def get_placement_by_id(self, client: AdOpsAdManagerClient, placement_id: str) -> dict:
         statement = (
-            StatementBuilder(version=client._API_VERSION)
+            StatementBuilder(version=API_VERSION)
             .Where("id = :id")
             .OrderBy("id", ascending=True)
             .Limit(1)
