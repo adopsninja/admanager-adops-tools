@@ -76,9 +76,11 @@ class SpreadsheetDataframe:
 
     def build_dataframe(self) -> pd.DataFrame:
         dataframe = pd.DataFrame(self.values)
-        dataframe.rename(columns=dataframe.iloc[0], inplace=True)
+        dataframe.rename(columns=dataframe.iloc[0], inplace=True)  # type: ignore
         dataframe = dataframe[1:]
-        dataframe.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        dataframe["site.url"] = dataframe["site.url"].str.lower()
+        for column in dataframe.columns:
+            dataframe[column] = dataframe[column].str.strip()
 
         return dataframe
 
