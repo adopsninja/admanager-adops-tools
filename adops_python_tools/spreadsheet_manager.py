@@ -76,6 +76,7 @@ class SpreadsheetDataframe:
 
     def build_dataframe(self) -> pd.DataFrame:
         dataframe = pd.DataFrame(self.values)
+        dataframe.fillna("", inplace=True)
         dataframe.rename(columns=dataframe.iloc[0], inplace=True)  # type: ignore
         dataframe = dataframe[1:]
         dataframe["site.url"] = dataframe["site.url"].str.lower()
@@ -153,6 +154,7 @@ class SpreadsheetDataframe:
         result = dataframe_before.compare(dataframe_after)
         result = result.droplevel(level=0, axis=1)
         result = result.reset_index().drop_duplicates().reset_index(drop=True)
+        result.index += 1
         result.rename(
             columns={
                 "self": "site.approvalStatus.before",
