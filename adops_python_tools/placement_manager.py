@@ -1,5 +1,6 @@
 import logging
 from pathlib import PurePath
+import re
 
 import pandas as pd
 from googleads import errors
@@ -28,8 +29,8 @@ class PlacementManager:
         return dataframe
 
     def filter_by_label_sign(self, dataframe: pd.DataFrame, pattern: str, is_positive: bool=True) -> pd.DataFrame:
-        ad_unit_label = dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"].str.contains(pattern, case=False)
-        url_label = dataframe["Dimension.AD_EXCHANGE_URL"].str.contains(pattern, case=False)
+        ad_unit_label = dataframe["Dimension.AD_EXCHANGE_DFP_AD_UNIT_ID"].str.contains(pattern, regex=True, flags=re.IGNORECASE, case=False)
+        url_label = dataframe["Dimension.AD_EXCHANGE_URL"].str.contains(pattern, regex=True, flags=re.IGNORECASE, case=False)
         if is_positive:
             dataframe = dataframe.loc[(ad_unit_label) | (url_label)]
         else:

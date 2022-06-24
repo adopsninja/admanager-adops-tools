@@ -243,6 +243,38 @@ Company Y:
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
+  - name: "Pakiet VW Standard 2022 PL"
+    id: 1234567893929
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 40
+    maxn: 65
+    minAdRequests: 5000
+    blacklist: ""
+    whitelist: ""
+  - name: "Pakiet VW Premium 2022 PL"
+    id: 1234567893707
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 65
+    maxn: 80
+    minAdRequests: 5000
+    blacklist: ""
+    whitelist: ""
+  - name: "Pakiet VW Premium+ 2022 PL"
+    id: 1234567893710
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 80
+    maxn: 100
+    minAdRequests: 5000
+    blacklist: ""
+    whitelist: ""
+  - name: "RON VW 2022 PL"
+    id: 1234567893713
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    minn: 40
+    maxn: 100
+    minAdRequests: 5000
+    blacklist: ""
+    whitelist: ""
 
 # Company E
 Company E:
