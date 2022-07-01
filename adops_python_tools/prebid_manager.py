@@ -81,7 +81,7 @@ class PrebidManager:
                 "creativePlaceholders": self.size_converter(self.config.get("creativePlaceholders")),
                 "targeting": {
                     "inventoryTargeting": {"targetedAdUnits": {"adUnitId": network["effectiveRootAdUnitId"]}},
-                    "customTargeting": self.set_custom_targeting(key_values, f"{cpm:.2f}", self.config.get("hbFormat")),
+                    "customTargeting": self.set_custom_targeting(key_values, f"{cpm:.2f}", self.config.get("hbFormat"), self.config.get("environment")),
                 },
                 "startDateTimeType": "IMMEDIATELY",
                 "startDateTime": datetime.datetime(sdate.year, sdate.month, sdate.day, tzinfo=pytz.timezone(timezone)),
@@ -213,12 +213,11 @@ class PrebidManager:
                     logger.error(error)
             continue
 
-    def set_custom_targeting(self, key_values: List[Dict], hb_pb: str, hb_format: List[str]) -> Dict:
+    def set_custom_targeting(self, key_values: List[Dict], hb_pb: str, hb_format: List[str], environment: str) -> Dict:
         def filter_keys(key_name: str) -> Dict:
             return [key for key in key_values if key["name"] == key_name][0]
 
         hb_pb_key: Dict = filter_keys("hb_pb") 
-        hb_format_key: Dict = filter_keys("hb_format")
 
         custom_targeting = {
             "xsi_type": "CustomCriteriaSet",
@@ -228,14 +227,17 @@ class PrebidManager:
                 "keyId": hb_pb_key["id"],
                 "valueIds": hb_pb_key["values"].get(hb_pb),
                 "operator": "IS",
-            },
-            {
+            }],
+        }
+
+        if environment != "app":
+            hb_format_key: Dict = filter_keys("hb_format")
+            custom_targeting["children"].append({
                 "xsi_type": "CustomCriteria",
                 "keyId": hb_format_key["id"],
                 "valueIds": [hb_format_key["values"].get(key) for key in hb_format if key in hb_format_key["values"]],
                 "operator": "IS",
-            }],
-        }
+            })
 
         return custom_targeting
 
