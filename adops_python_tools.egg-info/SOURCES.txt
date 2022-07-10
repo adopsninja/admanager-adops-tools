@@ -1,7 +1,0 @@
-README.md
-setup.cfg
-setup.py
-adops_python_tools.egg-info/PKG-INFO
-adops_python_tools.egg-info/SOURCES.txt
-adops_python_tools.egg-info/dependency_links.txt
-adops_python_tools.egg-info/top_level.txt
