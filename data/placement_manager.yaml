@@ -7,7 +7,7 @@ Company Y:
   placements:
   - name: "API_highviewability_40%+_YB"
     id: 1234567891144
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 50
     minAdRequests: 10000
@@ -15,237 +15,237 @@ Company Y:
     blacklist: ""
   - name: "API_highviewability_50%+_YB"
     id: 1234567895418
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 50
     maxn: 60
     minAdRequests: 10000
   - name: "yb_ctr_15"
     id: 1234567890324
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.15
     maxn: 0.29
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_ctr_30"
     id: 1234567895830
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.30
     maxn: 0.49
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_ctr_50"
     id: 123456789467
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.50
     maxn: 0.999
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_ctr_15"
     id: 1234567892399
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.15
     maxn: 0.29
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_ctr_30"
     id: 1234567895839
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.30
     maxn: 0.49
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_ctr_50"
     id: 1234567895842
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.50
     maxn: 0.999
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_ctr_15"
-    id: 1234567892047   
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    id: 1234567892047
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.15
     maxn: 0.29
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_ctr_30"
-    id: 1234567892050   
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    id: 1234567892050
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.30
     maxn: 0.49
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_ctr_50"
-    id: 1234567892727   
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    id: 1234567892727
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.50
     maxn: 0.999
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_viewability_40"
     id: 1234567891117
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 55
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_viewability_50"
     id: 1234567897089
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 55
     maxn: 65
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_viewability_60"
     id: 123456789507
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 75
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_viewability_70"
     id: 123456789227
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 82
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_viewability_80"
     id: 1234567897074
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 82
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_viewability_40"
     id: 1234567892573
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 55
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_viewability_50"
     id: 1234567895863
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 55
     maxn: 65
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_viewability_60"
     id: 1234567895851
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 75
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_viewability_70"
     id: 1234567895854
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 82
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_viewability_80"
     id: 1234567895857
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 82
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_viewability_40"
     id: 1234567892053
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 55
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_viewability_50"
     id: 1234567892730
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 55
     maxn: 65
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_viewability_60"
     id: 1234567892862
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 75
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_viewability_70"
     id: 1234567897934
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 82
     minAdRequests: 5000
     blacklist: ""
   - name: "yb_pl_notCompany APP_viewability_80"
     id: 1234567892733
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 82
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Lowcost YB - Viewability 40%"
     id: 1234567895519
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 5 
-    maxn: 40 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 5
+    maxn: 40
     minAdRequests: 10000
     blacklist: ""
   - name: "PMP - Pakiet Standard YB - High Viewability 40-65%"
     id: 1234567895394
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 65
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Premium YB - High Viewability 65-75%"
     id: 1234567898194
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 75
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Premium YB - High Viewability 75%"
     id: 1234567890111
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Lowcost YB - Viewability 40% - RON"
     id: 1234567893858
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 5
     maxn: 40
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Standard YB - High Viewability 40-65% - RON"
     id: 1234567893534
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 65
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Premium YB - High Viewability 65-75% - RON"
     id: 1234567893861
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 75
     minAdRequests: 5000
     blacklist: ""
   - name: "PMP - Pakiet Premium+ YB - High Viewability 75%+ - RON"
     id: 1234567893864
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 100
     minAdRequests: 5000
     blacklist: ""
   - name: "Pakiet VW Standard 2022 PL"
     id: 1234567893929
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 65
     minAdRequests: 5000
@@ -253,7 +253,7 @@ Company Y:
     whitelist: ""
   - name: "Pakiet VW Premium 2022 PL"
     id: 1234567893707
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 80
     minAdRequests: 5000
@@ -261,7 +261,7 @@ Company Y:
     whitelist: ""
   - name: "Pakiet VW Premium+ 2022 PL"
     id: 1234567893710
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 80
     maxn: 100
     minAdRequests: 5000
@@ -269,7 +269,7 @@ Company Y:
     whitelist: ""
   - name: "RON VW 2022 PL"
     id: 1234567893713
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 100
     minAdRequests: 5000
@@ -283,37 +283,37 @@ Company E:
   placements:
   - name: "Pakiet Standard 2022"
     id: 1234567894387
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 65
     minAdRequests: 1000
   - name: "Pakiet Premium 2022"
     id: 1234567898737
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 85
     minAdRequests: 1000
   - name: "Pakiet Premium+ 2022"
     id: 1234567893928
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 85
     maxn: 100
     minAdRequests: 1000
   - name: "PMP - Company E - Standard"
     id: 1234567896659
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 40
     maxn: 60
     minAdRequests: 1000
   - name: "PMP - Company E - Premium"
     id: 1234567898709
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 60
     maxn: 75
     minAdRequests: 1000
   - name: "PMP - Company E - Premium+"
     id: 1234567898895
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 70
     maxn: 100
     minAdRequests: 1000
@@ -325,57 +325,57 @@ Company I:
   placements:
   - name: "Pakiet Standard 2022"
     id: 1234567898755
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 65
     minAdRequests: 10000
   - name: "Pakiet Premium 2022"
     id: 1234567893934
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 85
     minAdRequests: 10000
   - name: "Pakiet Premium+ 2022"
     id: 1234567893937
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 85
     maxn: 100
     minAdRequests: 10000
   - name: "viewability_standard_40-55"
     id: 1234567890325
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
-    minn: 40 
-    maxn: 55 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 40
+    maxn: 55
     minAdRequests: 1000
   - name: "viewability_premium_55-70"
     id: 1234567890616
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
-    minn: 55 
-    maxn: 70 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 55
+    maxn: 70
     minAdRequests: 1000
   - name: "viewability_premium+_>70"
     id: 1234567890328
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
-    minn: 70 
-    maxn: 100 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 70
+    maxn: 100
     minAdRequests: 1000
   - name: "Pakiet High CTR 02+"
     id: 1234567891650
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.20
-    maxn:  0.35 
+    maxn:  0.35
     minAdRequests: 1000
   - name: "Pakiet High CTR 035+"
     id: 1234567891653
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.35
-    maxn:  0.50 
+    maxn:  0.50
     minAdRequests: 1000
   - name: "Pakiet High CTR 05+"
     id: 1234567891659
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR"
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.50
-    maxn:  100 
+    maxn:  100
     minAdRequests: 100
 
 # Company p
@@ -385,85 +385,85 @@ Company p:
   placements:
   - name: "Pakiet Standard 2022"
     id: 1234567894402
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 45
     maxn: 65
     minAdRequests: 150000
   - name: "Pakiet Premium 2022"
     id: 1234567894405
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 65
     maxn: 85
     minAdRequests: 50000
   - name: "Pakiet Premium+ 2022"
     id: 1234567893940
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 85
     maxn: 100
     minAdRequests: 50000
   - name: "pp_ctr_15"
     id: 1234567898974
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR" 
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.15
     maxn: 0.29
     minAdRequests: 100000
   - name: "pp_ctr_30"
     id: 1234567898533
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR" 
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.30
     maxn: 0.49
     minAdRequests: 300000
   - name: "pp_ctr_50"
     id: 1234567890457
-    column: "Column.AD_EXCHANGE_AD_REQUEST_CTR" 
+    column: "Column.AD_EXCHANGE_TOTAL_REQUEST_CTR"
     minn: 0.50
     maxn: 0.999
     minAdRequests: 100000
   - name: "pp_viewability_40"
     id: 1234567898527
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 45 
-    maxn: 55 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 45
+    maxn: 55
     minAdRequests: 100000
   - name: "pp_viewability_50"
     id: 1234567890046
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 55 
-    maxn: 65 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 55
+    maxn: 65
     minAdRequests: 100000
   - name: "pp_viewability_60"
     id: 1234567890052
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 67 
-    maxn: 75 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 67
+    maxn: 75
     minAdRequests: 200000
   - name: "pp_viewability_70"
     id: 1234567898719
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 75 
-    maxn: 82 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 75
+    maxn: 82
     minAdRequests: 100000
   - name: "pp_viewability_80"
     id: 1234567895891
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 82
     maxn: 100
     minAdRequests: 100000
   - name: "Pakiet Standard PPG"
     id: 1234567894392
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
-    minn: 35 
-    maxn: 60 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
+    minn: 35
+    maxn: 60
     minAdRequests: 200000
   - name: "Pakiet Premium PPG"
     id: 1234567894401
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 60
     maxn: 75
     minAdRequests: 100000
   - name: "Pakiet Premium+ PPG"
     id: 1234567894977
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE" 
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 75
     maxn: 100
     minAdRequests: 100000
@@ -475,7 +475,7 @@ Company A:
   placements:
   - name: "Programmatic - PMP - ROC Aktywni Standard"
     id: 1234567895532
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -483,7 +483,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Aktywni Premium"
     id: 1234567899417
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -491,7 +491,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Aktywni Premium+"
     id: 1234567895535
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -499,7 +499,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Biznes Info Standard"
     id: 1234567898919
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -507,7 +507,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Biznes Info Premium"
     id: 1234567898922
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -515,7 +515,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Biznes Info Premium+"
     id: 1234567899420
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -523,7 +523,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dom i Ogród Standard"
     id: 1234567898925
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -531,7 +531,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dom i Ogród Premium"
     id: 1234567899423
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -539,7 +539,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dom i Ogród Premium+"
     id: 1234567898928
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -547,7 +547,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kobieta Standard"
     id: 1234567899426
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -555,7 +555,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kobieta Premium"
     id: 1234567898931
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -563,7 +563,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kobieta Premium+"
     id: 1234567898934
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -571,7 +571,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Mężczyzna Standard"
     id: 1234567898937
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -579,7 +579,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Mężczyzna Premium"
     id: 1234567898940
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -587,7 +587,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Mężczyzna Premium+"
     id: 1234567899429
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -595,7 +595,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kulinaria Standard"
     id: 1234567899432
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -603,7 +603,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kulinaria Premium"
     id: 1234567898943
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -611,7 +611,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Kulinaria Premium+"
     id: 1234567899435
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -619,7 +619,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Parenting Standard"
     id: 1234567899438
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -627,7 +627,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Parenting Premium"
     id: 1234567899441
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -635,7 +635,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Parenting Premium+"
     id: 1234567899444
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -643,7 +643,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Rozrywka i Młodzi Standard"
     id: 1234567895538
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -651,7 +651,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Rozrywka i Młodzi Premium"
     id: 1234567899450
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -659,7 +659,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Rozrywka i Młodzi Premium+"
     id: 1234567898946
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -667,7 +667,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dziecko Standard"
     id: 1234567899453
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -675,7 +675,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dziecko Premium"
     id: 1234567899456
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -683,7 +683,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Dziecko Premium+"
     id: 1234567899459
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -691,7 +691,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Aplikacje Standard"
     id: 1234567899462
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 36
     maxn: 66
     minAdRequests: 5000
@@ -699,7 +699,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Aplikacje Premium"
     id: 1234567895541
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 5000
@@ -707,7 +707,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - ROC Aplikacje Premium+"
     id: 1234567898949
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 100
     minAdRequests: 5000
@@ -715,7 +715,7 @@ Company A:
     blacklist: ""
   - name: "gX"
     id: 1234567895391
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 1
     maxn: 36
     minAdRequests: 5000
@@ -723,7 +723,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Low Cost"
     id: 1234567895388
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 1
     maxn: 36
     minAdRequests: 5000
@@ -731,7 +731,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Standard"
     id: 1234567895385
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 37
     maxn: 66
     minAdRequests: 5000
@@ -739,7 +739,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Premium"
     id: 1234567894725
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 66
     maxn: 81
     minAdRequests: 5000
@@ -747,7 +747,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Premium +"
     id: 1234567895382
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 99
     minAdRequests: 5000
@@ -755,7 +755,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet X - Company W"
     id: 1234567893032
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 1
     maxn: 36
     minAdRequests: 1000
@@ -763,7 +763,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Low Cost - Company W"
     id: 1234567893035
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 1
     maxn: 36
     minAdRequests: 1000
@@ -771,7 +771,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Standard - Company W"
     id: 1234567895409
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 37
     maxn: 66
     minAdRequests: 1000
@@ -779,7 +779,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Premium - Company W"
     id: 1234567893038
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 67
     maxn: 81
     minAdRequests: 1000
@@ -787,7 +787,7 @@ Company A:
     blacklist: ""
   - name: "Programmatic - PMP - Pakiet Premium + - Company W"
     id: 1234567893041
-    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE"
+    column: "Column.AD_EXCHANGE_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE"
     minn: 77
     maxn: 99
     minAdRequests: 1000
