@@ -23,7 +23,7 @@ class ReportManager:
                 "endDate": datetime.date.today() - datetime.timedelta(1),
             }
             self.config[report_type].update(default_date_range)
-        
+
         query = {
             "reportQuery": self.config[report_type]
         }
